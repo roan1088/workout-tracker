@@ -15,6 +15,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 // API Routes
 // HTML Routes
+app.use("/", require("./routes/htmlRoutes.js"));
 
 // Starting the server
 app.listen(PORT, function() {
