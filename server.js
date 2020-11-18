@@ -27,6 +27,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
 // For static files, look in the public folder
 app.use(express.static(path.join(__dirname, 'public')));
 // API Routes
+app.use("/api", require("./routes/apiRoutes.js"));
 // HTML Routes
 app.use("/", require("./routes/htmlRoutes.js"));
 
