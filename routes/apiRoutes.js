@@ -38,8 +38,16 @@ Router.put("/workouts/:id", async (req, res) => {
   }
 });
 
-// GET request for ??
-Router.get("/workouts/range", (req, res) => {
+// GET request for the 7 latest workouts
+Router.get("/workouts/range", async (req, res) => {
+  try {
+    // Sort desc by _id to get the latest ones and limit to 7
+    const workouts = await db.Workout.find().sort({_id: -1}).limit(7).populate("exercises");
+    res.json(workouts);
+  }
+  catch (err) {
+    res.json(err);
+  }
 });
 
 module.exports = Router;
