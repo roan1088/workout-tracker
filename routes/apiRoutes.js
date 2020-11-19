@@ -5,25 +5,25 @@ const path = require("path");
 const db = require("../models");
 
 // GET all workouts
-Router.get("/workouts", (req, res) => {
-  db.Workout.find().populate("exercises")
-  .then(workouts => {
+Router.get("/workouts", async (req, res) => {
+  try {
+    const workouts = await db.Workout.find().populate("exercises");
     res.json(workouts);
-  })
-  .catch(err => {
+  }
+  catch (err) {
     res.json(err);
-  });
+  }
 });
 
 // POST a new workout
-Router.post("/workouts", (req, res) => {
-  db.Workout.create(req.body)
-  .then(workout => {
+Router.post("/workouts", async (req, res) => {
+  try {
+    const workout = db.Workout.create(req.body);
     res.json(workout);
-  })
-  .catch(err => {
+  }
+  catch (err) {
     res.json(err);
-  });
+  }
 });
 
 // POST a new exercise and PUT it into a specific workout
