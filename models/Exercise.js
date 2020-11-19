@@ -20,7 +20,7 @@ const ExerciseSchema = new Schema({
   },
   weight: Number,
   reps: Number,
-  stats: Number,
+  sets: Number,
   distance: Number
 });
 
