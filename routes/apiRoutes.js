@@ -6,7 +6,7 @@ const db = require("../models");
 
 // GET all workouts
 Router.get("/workouts", (req, res) => {
-  db.Workout.find()
+  db.Workout.find().populate("exercises")
   .then(workouts => {
     res.json(workouts);
   })
