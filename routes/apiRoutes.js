@@ -27,7 +27,15 @@ Router.post("/workouts", (req, res) => {
 });
 
 // POST a new exercise and PUT it into a specific workout
-Router.put("/workouts/:id", (req, res) => {
+Router.put("/workouts/:id", async (req, res) => {
+  try {
+    const exercise = await db.Exercise.create(req.body);
+    const workout = await db.Workout.findByIdAndUpdate(req.params.id, {$push: {exercises: exercise._id}}, {new: true}).populate("exercises");
+    res.json(workout);
+  }
+  catch (err) {
+    res.json(err);
+  }
 });
 
 // GET request for ??
