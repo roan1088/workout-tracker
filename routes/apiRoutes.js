@@ -18,7 +18,7 @@ Router.get("/workouts", async (req, res) => {
 // POST a new workout
 Router.post("/workouts", async (req, res) => {
   try {
-    const workout = db.Workout.create(req.body);
+    const workout = await db.Workout.create(req.body);
     res.json(workout);
   }
   catch (err) {
